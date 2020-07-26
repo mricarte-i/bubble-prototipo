@@ -29,8 +29,8 @@ public class MouseCamLook : MonoBehaviour
     public float minDistance = 7.5f;
 
     private float  xMin,xMax,yMin,yMax;
+    private float  zMin,zMax;
 
-    // Update is called once per frame
     void LateUpdate()
     {
        if(playersTransform.Length == 0)
@@ -41,6 +41,8 @@ public class MouseCamLook : MonoBehaviour
 
        xMin = xMax = playersTransform[0].position.x;
        yMin = yMax = playersTransform[0].position.y;
+       zMin = zMax = playersTransform[0].position.z;
+
        for(int i = 1; i < playersTransform.Length; i++)
        {
          if(playersTransform[i].position.x < xMin)
@@ -54,31 +56,26 @@ public class MouseCamLook : MonoBehaviour
 
          if(playersTransform[i].position.y > yMax)
          yMax = playersTransform[i].position.y;
+
+         if(playersTransform[i].position.z < zMin)
+         zMin = playersTransform[i].position.z;
+
+         if(playersTransform[i].position.z > zMax)
+         zMax = playersTransform[i].position.z;
        }
 
-        for(int j = 1; j < playersTransform.Length; j++)
-       {
-         if(playersTransform[j].position.x < xMin)
-         xMin = playersTransform[j].position.x;
+      float xMiddle = (xMin + xMax) / 2;
+      float yMiddle = (yMin + yMax) / 2;
+      float zMiddle = (zMin + zMax) / 2;
+      float distance;
 
-         if(playersTransform[j].position.x > xMax)
-         xMax = playersTransform[j].position.x;
+      distance = (playersTransform[1].position  - playersTransform[0].position).magnitude;
+      distance = distance >= minDistance ? distance : minDistance;
+      transform.position = Vector3.Cross((playersTransform[1].position  - playersTransform[0].position),Vector3.up).normalized*distance;
+      transform.position += new Vector3(0, offset, 0);
+      transform.LookAt(new Vector3(xMiddle, yMiddle, zMiddle));
+      //transform.position = new Vector3(xMiddle, yMiddle, zMiddle);
 
-         if(playersTransform[j].position.y < yMin)
-         yMin = playersTransform[j].position.y;
-
-         if(playersTransform[j].position.y > yMax)
-         yMax = playersTransform[j].position.y;
-       }
-
-       float xMiddle = (xMin + xMax) / 2;
-       float yMiddle = (yMin + yMax) / 2;
-       float distance = xMax - xMin;
-
-       if(distance < minDistance)
-          distance = minDistance;
-
-       transform.position = new Vector3(xMiddle, yMiddle, -distance);
 
     }
 }

@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class Player1Controller : MonoBehaviour
 {
-
+    public Transform[] playersTransform;
     public float speed = 10.0f;
     private float translation;
     private float straffe;
@@ -19,6 +19,14 @@ public class Player1Controller : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        GameObject[] Players = GameObject.FindGameObjectsWithTag("Player");
+        playersTransform = new Transform[Players.Length];
+        for(int i = 0; i < Players.Length; i++)
+        {
+            if(Players[i] != this){
+                playersTransform[i] = Players[i].transform;
+            }
+        }
         // turn off the cursor
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -26,7 +34,7 @@ public class Player1Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       float vertical = 0f;
+        float vertical = 0f;
         float horizontal = 0f;
         // Input.GetAxis() is used to get the user's input
         // You can furthor set it on Unity. (Edit, Project Settings, Input)
@@ -59,5 +67,7 @@ public class Player1Controller : MonoBehaviour
         {
             Cursor.lockState = (Cursor.lockState == CursorLockMode.None) ? CursorLockMode.Locked : CursorLockMode.None;
         }
+
+        transform.LookAt(playersTransform[0]);
     }
 }

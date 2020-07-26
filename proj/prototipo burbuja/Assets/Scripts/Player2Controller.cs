@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class Player2Controller : MonoBehaviour
 {
-
+    public Transform[] playersTransform;
     public float speed = 10.0f;
     private float translation;
     private float straffe;
@@ -19,6 +19,14 @@ public class Player2Controller : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        GameObject[] Players = GameObject.FindGameObjectsWithTag("Player");
+        playersTransform = new Transform[Players.Length];
+        for(int i = 0; i < Players.Length; i++)
+        {
+            if(Players[i] != this){
+                playersTransform[i] = Players[i].transform;
+            }
+        }
         // turn off the cursor
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -46,6 +54,8 @@ public class Player2Controller : MonoBehaviour
         straffe = horizontal * speed * Time.deltaTime;
         transform.Translate(straffe, 0, translation);
 
+
+
         if (Input.GetKey(KeyCode.Space))
         {
             transform.Translate(0, speed/2.0f * Time.deltaTime, 0);
@@ -59,5 +69,7 @@ public class Player2Controller : MonoBehaviour
         {
             Cursor.lockState = (Cursor.lockState == CursorLockMode.None) ? CursorLockMode.Locked : CursorLockMode.None;
         }
+
+        transform.LookAt(playersTransform[1]);
     }
 }
