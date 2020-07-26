@@ -68,10 +68,19 @@ public class MouseCamLook : MonoBehaviour
       float yMiddle = (yMin + yMax) / 2;
       float zMiddle = (zMin + zMax) / 2;
       float distance;
+      Vector3 middle = new Vector3(xMiddle, yMiddle, zMiddle);
 
       distance = (playersTransform[1].position  - playersTransform[0].position).magnitude;
       distance = distance >= minDistance ? distance : minDistance;
       transform.position = Vector3.Cross((playersTransform[1].position  - playersTransform[0].position),Vector3.up).normalized*distance;
+
+      //DEBUG GIZMOS, for understanding vectors and stuff:
+      Debug.DrawLine(playersTransform[0].position, playersTransform[1].position, Color.green);
+      Debug.DrawLine(Vector3.zero, Vector3.up, Color.red);
+      Debug.DrawLine(middle,transform.position, Color.blue);
+      Debug.DrawLine(middle, Vector3.Cross((middle - playersTransform[0].position), Vector3.up), Color.white);
+
+
       transform.position += new Vector3(0, offset, 0);
       transform.LookAt(new Vector3(xMiddle, yMiddle, zMiddle));
       //transform.position = new Vector3(xMiddle, yMiddle, zMiddle);

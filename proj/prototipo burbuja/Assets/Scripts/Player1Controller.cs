@@ -15,6 +15,7 @@ public class Player1Controller : MonoBehaviour
     public float speed = 10.0f;
     private float translation;
     private float straffe;
+    private Animator animator;
 
     // Use this for initialization
     void Start()
@@ -29,6 +30,7 @@ public class Player1Controller : MonoBehaviour
         }
         // turn off the cursor
         Cursor.lockState = CursorLockMode.Locked;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -68,6 +70,9 @@ public class Player1Controller : MonoBehaviour
             Cursor.lockState = (Cursor.lockState == CursorLockMode.None) ? CursorLockMode.Locked : CursorLockMode.None;
         }
 
+
+        //all animation related:
         transform.LookAt(playersTransform[0]);
+
     }
 }
