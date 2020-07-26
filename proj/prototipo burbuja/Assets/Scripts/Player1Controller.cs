@@ -12,7 +12,7 @@ using UnityEngine;
 public class Player1Controller : MonoBehaviour
 {
     public Transform[] playersTransform;
-    public float speed = 10.0f;
+    public float speed = 2.0f;
     private float translation;
     private float straffe;
     private Animator animator;
@@ -38,6 +38,7 @@ public class Player1Controller : MonoBehaviour
     {
         float vertical = 0f;
         float horizontal = 0f;
+        float punch = 0f;
         // Input.GetAxis() is used to get the user's input
         // You can furthor set it on Unity. (Edit, Project Settings, Input)
         if (Input.GetKey(KeyCode.A)){
@@ -52,6 +53,17 @@ public class Player1Controller : MonoBehaviour
         if (Input.GetKey(KeyCode.S)){
             vertical = -1;
         }
+        if (Input.GetKey(KeyCode.Q)){
+            punch = -1;
+            Debug.Log("LEFT PUNCH");
+        }
+        if (Input.GetKey(KeyCode.E)){
+            punch = 1;
+            Debug.Log("RIGHT PUNCH");
+        }
+
+
+
         translation = vertical * speed * Time.deltaTime;
         straffe = horizontal * speed * Time.deltaTime;
         transform.Translate(straffe, 0, translation);
@@ -73,6 +85,9 @@ public class Player1Controller : MonoBehaviour
 
         //all animation related:
         transform.LookAt(playersTransform[0]);
+        animator.SetFloat("vel_horizontal", horizontal);
+        animator.SetFloat("vel_vertical", vertical);
+        animator.SetFloat("punching", punch);
 
     }
 }

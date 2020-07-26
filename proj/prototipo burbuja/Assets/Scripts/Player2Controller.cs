@@ -12,9 +12,10 @@ using UnityEngine;
 public class Player2Controller : MonoBehaviour
 {
     public Transform[] playersTransform;
-    public float speed = 10.0f;
+    public float speed = 2.0f;
     private float translation;
     private float straffe;
+    private Animator animator;
 
     // Use this for initialization
     void Start()
@@ -29,6 +30,7 @@ public class Player2Controller : MonoBehaviour
         }
         // turn off the cursor
         Cursor.lockState = CursorLockMode.Locked;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -36,6 +38,7 @@ public class Player2Controller : MonoBehaviour
     {
         float vertical = 0f;
         float horizontal = 0f;
+        float punch = 0f;
         // Input.GetAxis() is used to get the user's input
         // You can furthor set it on Unity. (Edit, Project Settings, Input)
         if (Input.GetKey(KeyCode.LeftArrow)){
@@ -50,6 +53,15 @@ public class Player2Controller : MonoBehaviour
         if (Input.GetKey(KeyCode.DownArrow)){
             vertical = -1;
         }
+        if (Input.GetKey(KeyCode.N)){
+            punch = -1;
+            Debug.Log("LEFT PUNCH");
+        }
+        if (Input.GetKey(KeyCode.M)){
+            punch = 1;
+            Debug.Log("RIGHT PUNCH");
+        }
+
         translation = vertical * speed * Time.deltaTime;
         straffe = horizontal * speed * Time.deltaTime;
         transform.Translate(straffe, 0, translation);
@@ -70,6 +82,10 @@ public class Player2Controller : MonoBehaviour
             Cursor.lockState = (Cursor.lockState == CursorLockMode.None) ? CursorLockMode.Locked : CursorLockMode.None;
         }
 
+        //Animation related stuff:
         transform.LookAt(playersTransform[1]);
+        animator.SetFloat("vel_horizontal", horizontal);
+        animator.SetFloat("vel_vertical", vertical);
+        animator.SetFloat("punching", punch);
     }
 }
