@@ -12,40 +12,80 @@ using UnityEngine;
 
 public class MouseCamLook : MonoBehaviour
 {
+    // lo que esta siguiendo la camara
+    public Transform[] playersTransform;
+    public void Start()
+    {
+        //LLamar los tags de los tags, en lugar de hacerlos dos objetos distintos
+        GameObject[] Players1 = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] Players2 = GameObject.FindGameObjectsWithTag("Player2");
+        playersTransform = new Transform[Players1.Length];
+        playersTransform = new Transform[Players2.Length];
+        for(int i = 0; i < Players1.Length; i++)
+        {
+           playersTransform[i] = Players1[i].transform;
+        }
 
-    [SerializeField]
-    public float sensitivity = 5.0f;
-    [SerializeField]
-    public float smoothing = 2.0f;
-    // the chacter is the capsule
-    public GameObject character1;
-    public GameObject character2;
-    private Transform mid;
-    // get the incremental value of mouse moving
-    private Vector2 mouseLook;
-    // smooth the mouse moving
-    private Vector2 smoothV;
+        for(int j = 0; j < Players2.Length; j++)
+        {
+            playersTransform[j] = Players2[j].transform;
+        }
+    } 
 
+    public float offset = 2.0f;
+    public float minDistance = 7.5f;
 
+    private float  xMin,xMax,yMin,yMax;
+    
     // Update is called once per frame
     void LateUpdate()
     {
-        mid.position = character1.transform.position + (character2.transform.position - character1.transform.position)/2;
-        transform.LookAt(mid);
-        /*
-            // md is mosue delta
-            var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-            md = Vector2.Scale(md, new Vector2(sensitivity * smoothing, sensitivity * smoothing));
-            // the interpolated float result between the two float values
-            smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
-            smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
-            // incrementally add to the camera look
-            mouseLook += smoothV;
+       if(playersTransform.Length == 0)
+       {
+         Debug.Log("There are no players, dumass");
+         return;
+       }  
 
-            // vector3.right means the x-axis
-            transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
-            character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
-    */
+       xMin = xMax = playersTransform[0].position.x;
+       yMin = yMax = playersTransform[0].position.y;
+       for(int i = 1; i < playersTransform.Length; i++)
+       {
+         if(playersTransform[i].position.x < xMin)
+         xMin = playersTransform[i].position.x;
+
+         if(playersTransform[i].position.x > xMax)
+         xMax = playersTransform[i].position.x;
+
+         if(playersTransform[i].position.y < yMin)
+         yMin = playersTransform[i].position.y;
+
+         if(playersTransform[i].position.y > yMax)
+         yMax = playersTransform[i].position.y;
+       }
+
+        for(int j = 1; j < playersTransform.Length; j++)
+       {
+         if(playersTransform[j].position.x < xMin)
+         xMin = playersTransform[j].position.x;
+
+         if(playersTransform[j].position.x > xMax)
+         xMax = playersTransform[j].position.x;
+
+         if(playersTransform[j].position.y < yMin)
+         yMin = playersTransform[j].position.y;
+
+         if(playersTransform[j].position.y > yMax)
+         yMax = playersTransform[j].position.y;
+       }
+
+       float xMiddle = (xMin + xMax) / 2;
+       float yMiddle = (yMin + yMax) / 2;
+       float distance = xMax - xMin;
+
+       if(distance < minDistance)
+          distance = minDistance;
+
+       transform.position = new Vector3(xMiddle, yMiddle, -distance);
 
     }
 }
