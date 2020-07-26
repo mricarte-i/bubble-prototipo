@@ -17,26 +17,19 @@ public class MouseCamLook : MonoBehaviour
     public void Start()
     {
         //LLamar los tags de los tags, en lugar de hacerlos dos objetos distintos
-        GameObject[] Players1 = GameObject.FindGameObjectsWithTag("Player");
-        GameObject[] Players2 = GameObject.FindGameObjectsWithTag("Player2");
-        playersTransform = new Transform[Players1.Length];
-        playersTransform = new Transform[Players2.Length];
-        for(int i = 0; i < Players1.Length; i++)
+        GameObject[] Players = GameObject.FindGameObjectsWithTag("Player");
+        playersTransform = new Transform[Players.Length];
+        for(int i = 0; i < Players.Length; i++)
         {
-           playersTransform[i] = Players1[i].transform;
+           playersTransform[i] = Players[i].transform;
         }
-
-        for(int j = 0; j < Players2.Length; j++)
-        {
-            playersTransform[j] = Players2[j].transform;
-        }
-    } 
+    }
 
     public float offset = 2.0f;
     public float minDistance = 7.5f;
 
     private float  xMin,xMax,yMin,yMax;
-    
+
     // Update is called once per frame
     void LateUpdate()
     {
@@ -44,7 +37,7 @@ public class MouseCamLook : MonoBehaviour
        {
          Debug.Log("There are no players, dumass");
          return;
-       }  
+       }
 
        xMin = xMax = playersTransform[0].position.x;
        yMin = yMax = playersTransform[0].position.y;
