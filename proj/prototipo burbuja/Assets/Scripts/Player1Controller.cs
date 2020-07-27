@@ -12,10 +12,13 @@ using UnityEngine;
 public class Player1Controller : MonoBehaviour
 {
     public Transform[] playersTransform;
+    public Collider[] attacHitBoxes;
     public float speed = 2.0f;
+    public PhysicMaterial player1ID_Mat;
     private float translation;
     private float straffe;
     private Animator animator;
+
 
     // Use this for initialization
     void Start()
@@ -56,10 +59,12 @@ public class Player1Controller : MonoBehaviour
         if (Input.GetKey(KeyCode.Q)){
             punch = -1;
             Debug.Log("LEFT PUNCH");
+            Attack(attacHitBoxes[0]);
         }
         if (Input.GetKey(KeyCode.E)){
             punch = 1;
             Debug.Log("RIGHT PUNCH");
+            Attack(attacHitBoxes[1]);
         }
 
 
@@ -89,5 +94,17 @@ public class Player1Controller : MonoBehaviour
         animator.SetFloat("vel_vertical", vertical);
         animator.SetFloat("punching", punch);
 
+    }
+
+    private void Attack(Collider col){
+        Collider[] colliders = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hurtboxes"));
+        foreach(Collider c in colliders){
+            if(c.transform.tag == "P1"){
+                Debug.Log("self!");
+                continue;
+            }
+            //ESCRIBO el tag del collider que toque
+            Debug.Log(c.transform.tag);
+        }
     }
 }

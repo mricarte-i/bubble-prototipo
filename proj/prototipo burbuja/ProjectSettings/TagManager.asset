@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Player2
+  - P1
+  - P2
   layers:
   - Default
   - TransparentFX
@@ -15,8 +17,8 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
+  - Hurtboxes
+  - Hitboxes
   - 
   - 
   - 
