@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 303, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 109
+  controlID: 43
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 442}
   m_MaxSize: {x: 12004, y: 8042}
   vertical: 0
-  controlID: 80
+  controlID: 125
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 442}
   m_MaxSize: {x: 8003, y: 8042}
   vertical: 1
-  controlID: 81
+  controlID: 42
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 82
+  controlID: 80
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -491,7 +491,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 440
-    width: 433
+    width: 570
     height: 257
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
@@ -519,8 +519,8 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 23}
-    m_SelectedIDs: 6c460000
-    m_LastClickedID: 18028
+    m_SelectedIDs: d8470000
+    m_LastClickedID: 18392
     m_ExpandedIDs: 000000007a4200000a4600000c4600000e46000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -580,18 +580,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000fc4a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: MouseCamLook
+      m_OriginalName: MouseCamLook
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 12454
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 7}
     m_CreateAssetUtility:
@@ -734,9 +734,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.19355209, y: 1.2537079, z: -0.22382508}
+    m_Target: {x: 6.8013415, y: 1.9999999, z: 3.3804018}
     speed: 2
-    m_Value: {x: 0.19355209, y: 1.2537079, z: -0.22382508}
+    m_Value: {x: 6.8013415, y: 1.9999999, z: 3.3804018}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -786,9 +786,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0.026424134, y: 0.9457637, z: -0.079631485, w: 0.31383386}
   m_Size:
-    m_Target: 10.147472
+    m_Target: 22
     speed: 2
-    m_Value: 10.147472
+    m_Value: 22
   m_Ortho:
     m_Target: 1
     speed: 2
