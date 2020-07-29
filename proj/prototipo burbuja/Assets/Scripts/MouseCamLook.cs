@@ -82,7 +82,7 @@ public class MouseCamLook : MonoBehaviour
       Debug.DrawLine(middle, Vector3.Cross((middle - playersTransform[0].position), Vector3.up), Color.white);
 
 
-      Debug.Log("caca");
+      //Debug.Log("caca");
       transform.position += new Vector3(0, offset, 0);
       transform.LookAt(new Vector3(xMiddle, yMiddle, zMiddle));
       //transform.position = new Vector3(xMiddle, yMiddle, zMiddle);

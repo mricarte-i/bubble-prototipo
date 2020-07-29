@@ -2402,6 +2402,8 @@ MonoBehaviour:
   - {fileID: 525276552}
   - {fileID: 426652927}
   speed: 2
+  TimedAnimationClips:
+  - {fileID: 7400000, guid: 36c123dd30eb44840998d6777f49a985, type: 2}
 --- !u!4 &8296172667572894489 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6798592437573424800, guid: baf8df76b417ead4289f7d1b55c28766,

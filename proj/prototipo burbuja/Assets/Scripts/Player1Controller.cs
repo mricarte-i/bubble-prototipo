@@ -18,6 +18,8 @@ public class Player1Controller : MonoBehaviour
     private float translation;
     private float straffe;
     private Animator animator;
+    private bool IsPunching = false;
+    float punch = 0f;
 
 
     // Use this for initialization
@@ -37,15 +39,11 @@ public class Player1Controller : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        bool IsPunching = false;
         float vertical = 0f;
         float horizontal = 0f;
-        float punch = 0f;
 
-        //necesito una forma de saber si el animator termino de hacer la animacion de LeftPunching/RightPunching
-        //asi le desativo el trigger, sino se queda loopeando eso
 
         // Input.GetAxis() is used to get the user's input
         // You can furthor set it on Unity. (Edit, Project Settings, Input)
@@ -109,7 +107,13 @@ public class Player1Controller : MonoBehaviour
 
     }
 
+
+    [SerializeField]
+    AnimationClip[] TimedAnimationClips;
+
     private void Attack(Collider col){
+        //StartCoroutine(CheckEventTime(TimedAnimationClips[0]));
+        StartCoroutine(CheckEventTime(TimedAnimationClips[0]));
         Collider[] colliders = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hurtboxes"));
         foreach(Collider c in colliders){
             if(c.transform.tag == "P1"){
@@ -124,4 +128,12 @@ public class Player1Controller : MonoBehaviour
     private void OnAnimatorMove(){
 
     }
+
+    IEnumerator CheckEventTime(AnimationClip animationClip){
+        yield return new WaitForSeconds(animationClip.length);
+        Debug.Log("AAAAAAAA");
+        animator.SetBool("IsPunching", false);
+
+    }
+
 }
