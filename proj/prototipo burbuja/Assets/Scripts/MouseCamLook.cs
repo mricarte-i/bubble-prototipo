@@ -94,7 +94,7 @@ public class MouseCamLook : MonoBehaviour
 
       transform.position += new Vector3(0, offset, 0);
       Quaternion.LookRotation(middle);
-      transform.LookAt(new Vector3(xMiddle, yMiddle, zMiddle));
+      transform.LookAt(new Vector3(xMiddle, yMiddle, zMiddle), Vector3.up);
       //transform.position = new Vector3(xMiddle, yMiddle, zMiddle);
 
 
