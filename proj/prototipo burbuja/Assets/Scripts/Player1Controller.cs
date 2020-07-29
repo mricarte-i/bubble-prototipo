@@ -14,7 +14,7 @@ public class Player1Controller : MonoBehaviour
     public Transform[] playersTransform;
     public Collider[] attacHitBoxes;
     public float speed = 2.0f;
-    public PhysicMaterial player1ID_Mat;
+
     private float translation;
     private float straffe;
     private Animator animator;
@@ -39,9 +39,14 @@ public class Player1Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool IsPunching = false;
         float vertical = 0f;
         float horizontal = 0f;
         float punch = 0f;
+
+        //necesito una forma de saber si el animator termino de hacer la animacion de LeftPunching/RightPunching
+        //asi le desativo el trigger, sino se queda loopeando eso
+
         // Input.GetAxis() is used to get the user's input
         // You can furthor set it on Unity. (Edit, Project Settings, Input)
         if (Input.GetKey(KeyCode.A)){
@@ -57,13 +62,21 @@ public class Player1Controller : MonoBehaviour
             vertical = -1;
         }
         if (Input.GetKey(KeyCode.Q)){
-            punch = -1;
             Debug.Log("LEFT PUNCH");
+            IsPunching = true;
+            animator.SetTrigger("punch");
+            animator.SetBool("IsPunching", IsPunching);
+            punch = 0f;
+            animator.SetFloat("punch_side", punch);
             Attack(attacHitBoxes[0]);
         }
         if (Input.GetKey(KeyCode.E)){
-            punch = 1;
             Debug.Log("RIGHT PUNCH");
+            IsPunching = true;
+            animator.SetTrigger("punch");
+            animator.SetBool("IsPunching", IsPunching);
+            punch = 1f;
+            animator.SetFloat("punch_side", punch);
             Attack(attacHitBoxes[1]);
         }
 
@@ -92,7 +105,7 @@ public class Player1Controller : MonoBehaviour
         transform.LookAt(playersTransform[0]);
         animator.SetFloat("vel_horizontal", horizontal);
         animator.SetFloat("vel_vertical", vertical);
-        animator.SetFloat("punching", punch);
+
 
     }
 
@@ -100,11 +113,15 @@ public class Player1Controller : MonoBehaviour
         Collider[] colliders = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hurtboxes"));
         foreach(Collider c in colliders){
             if(c.transform.tag == "P1"){
-                Debug.Log("self!");
+                //Debug.Log("self!");
                 continue;
             }
             //ESCRIBO el tag del collider que toque
             Debug.Log(c.transform.tag);
         }
+    }
+
+    private void OnAnimatorMove(){
+
     }
 }
