@@ -70,10 +70,21 @@ public class MouseCamLook : MonoBehaviour
       float distance;
       Vector3 middle = new Vector3(xMiddle, yMiddle, zMiddle);
 
-      distance = (playersTransform[1].position  - playersTransform[0].position).magnitude;
+
+      distance = (playersTransform[1].position - playersTransform[0].position).magnitude;
       distance = distance >= minDistance ? distance : minDistance;
+
+      //float angle = Mathf.atan(playersTransform[0].position.x - transform.position.x) / (playersTransform[1].position.z - transform.position.z);
+
       //transform.position = Vector3.Cross((playersTransform[1].position  - playersTransform[0].position),Vector3.up).normalized*distance;
-      transform.position = Vector3.Cross((middle - playersTransform[0].position), Vector3.up).normalized * distance;
+      Vector3 Cross = middle - (playersTransform[0].position - playersTransform[1].position);
+      transform.position = Vector3.Cross(Cross, Vector3.up).normalized * distance;
+      //Quaternion rotation = Quaternion.Euler(0, angle, 0);
+      //Vector3 camNewPlace = middle.position - (rotation * offset);
+      //transform.rotation = Quaternion.LookRotation(playersTransform[0].position - transform.position , Vector3.up);
+      //transform.LookAt(Cross, Vector3.up);
+      //Mathf.Clamp(distance, 10.0f, 10.0f);
+
 
       //DEBUG GIZMOS, for understanding vectors and stuff:
       Debug.DrawLine(playersTransform[0].position, playersTransform[1].position, Color.green);
@@ -81,10 +92,9 @@ public class MouseCamLook : MonoBehaviour
       Debug.DrawLine(middle,transform.position, Color.blue);
       Debug.DrawLine(middle, Vector3.Cross((middle - playersTransform[0].position), Vector3.up), Color.white);
 
-
-      //Debug.Log("caca");
       transform.position += new Vector3(0, offset, 0);
-      transform.LookAt(new Vector3(xMiddle, yMiddle, zMiddle));
+      Quaternion.LookRotation(middle);
+      transform.LookAt(new Vector3(xMiddle, yMiddle, zMiddle), Vector3.up);
       //transform.position = new Vector3(xMiddle, yMiddle, zMiddle);
 
 
