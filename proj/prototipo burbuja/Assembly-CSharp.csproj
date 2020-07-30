@@ -45,8 +45,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\CameraWorker.cs" />
      <Compile Include="Assets\Scripts\HitboxChecker.cs" />
      <Compile Include="Assets\Scripts\HurtboxChecker.cs" />
+     <Compile Include="Assets\Scripts\Middle.cs" />
      <Compile Include="Assets\Scripts\MouseCamLook.cs" />
      <Compile Include="Assets\Scripts\Player2Controller.cs" />
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
