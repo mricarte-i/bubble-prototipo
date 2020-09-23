@@ -69,8 +69,8 @@ public class Middle : MonoBehaviour
       Vector3 middle = new Vector3(xMiddle, yMiddle, zMiddle);
 
 
-        transform.position =middle;
-        transform.LookAt(playersTransform[1].position);
+      transform.position =middle;
+      transform.LookAt(playersTransform[1].position);
 
 
     }

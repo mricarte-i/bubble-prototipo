@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.2829604, g: 0.36382717, b: 0.46042946, a: 1}
+  m_IndirectSpecularColor: {r: 0.2829602, g: 0.36382672, b: 0.46042836, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2115,7 +2115,7 @@ GameObject:
   - component: {fileID: 2042775113}
   - component: {fileID: 2042775112}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: CameraCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2206,7 +2206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042775111}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.81890106, y: -0.660787, z: 0.7780512}
+  m_LocalPosition: {x: 0.81890106, y: 0.42, z: 0.7780512}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 766728258}
