@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 431, y: 271}
   m_MaxSize: {x: 14001, y: 10021}
   vertical: 0
-  controlID: 168
+  controlID: 71
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_MinSize: {x: 706, y: 492}
   m_MaxSize: {x: 18001, y: 14042}
   vertical: 0
-  controlID: 62
+  controlID: 43
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_MinSize: {x: 431, y: 492}
   m_MaxSize: {x: 14001, y: 14042}
   vertical: 1
-  controlID: 63
+  controlID: 115
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 64
+  controlID: 116
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -552,8 +552,8 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 30}
-    m_SelectedIDs: 08470000
-    m_LastClickedID: 18184
+    m_SelectedIDs: 02470000
+    m_LastClickedID: 18178
     m_ExpandedIDs: 0000000086420000a0460000a2460000a446000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -609,22 +609,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: MouseCamLook
-      m_OriginalName: MouseCamLook
+      m_Name: Middle
+      m_OriginalName: Middle
       m_EditFieldRect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 0
-        height: 0
-      m_UserData: 12454
+        x: 35
+        y: 32
+        width: 306
+        height: 16
+      m_UserData: 15166
       m_IsWaitingForDelay: 0
-      m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_IsRenaming: 1
+      m_OriginalEventType: 14
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 7}
     m_CreateAssetUtility:
@@ -705,7 +705,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: a6300000
+      m_SelectedIDs: 3e3b0000
       m_LastClickedID: 0
       m_ExpandedIDs: 3afbffff
       m_RenameOverlay:
