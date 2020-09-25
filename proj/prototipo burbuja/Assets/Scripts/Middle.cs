@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class Middle : MonoBehaviour
 {
-    public GameObject camera;
+    public float scaleTime;
+    private GameObject camera;
     public Transform[] playersTransform;
+    public float maxSize = 20f; //max zoom out size of our camera
+    public float minSize; //min zoom out size of our camera
+    
+
+    private bool isScaling;
+    public float currentSize = 2f;
+    private float targetSize;
+    private float speedRange; // this is used for lerp function
+    private float sizeDelta;  // how long it takes to change the camera size 1 unit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +28,15 @@ public class Middle : MonoBehaviour
         }
         camera = GameObject.FindGameObjectsWithTag("CameraCube")[0];
 
+        isScaling = false;
+        currentSize = maxSize;
+        //speedRange = maxSpeed - minSpeed;
+        sizeDelta = (maxSize - minSize) / scaleTime;
+
     }
 
     public float offset = 2.0f;
-    public float minDistance = 7.5f;
-    public float maxDistance = 24.5f;
+    
 
     private float  xMin,xMax,yMin,yMax;
     private float  zMin,zMax;
@@ -36,6 +51,7 @@ public class Middle : MonoBehaviour
             Debug.Log("There are no players, dumass");
             return;
         }
+
 
        xMin = xMax = playersTransform[0].position.x;
        yMin = yMax = playersTransform[0].position.y;
@@ -65,13 +81,18 @@ public class Middle : MonoBehaviour
       float xMiddle = (xMin + xMax) / 2;
       float yMiddle = (yMin + yMax) / 2;
       float zMiddle = (zMin + zMax) / 2;
-      float distance;
+      float distance = Vector3.Distance(playersTransform[0].position, playersTransform[1].position);
       Vector3 middle = new Vector3(xMiddle, yMiddle, zMiddle);
 
+      if (maxSize > distance)
+      {
+        GameObject.FindGameObjectsWithTag("Player")[1].GetComponent<PlayerControl>().enabled = false;
+      }
 
-      transform.position =middle;
+      transform.position = middle;
       transform.LookAt(playersTransform[1].position);
 
-
     }
+
+
 }
